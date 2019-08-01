@@ -49,16 +49,16 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
-    /*private static final int REQUEST_SELECT_IMAGE = 0;
+    private static final int REQUEST_SELECT_IMAGE = 0;
     private static final int REQUEST_TAKE_PHOTO = 0;
-    private Uri mUriPhotoTaken;*/
+    private Uri mUriPhotoTaken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*Intent intent = new Intent(this, IdentificationActivity.class);
+        Intent intent = new Intent(this, IdentificationActivity.class);
         startActivity(intent);
 
         Intent intent2 = new Intent(this, SelectImageActivity.class);
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
             } catch (IOException e) {
                 setInfo(e.getMessage());
             }
-        }*/
+        }
 
         if (getString(R.string.subscription_key).startsWith("Please")) {
             new AlertDialog.Builder(this)
