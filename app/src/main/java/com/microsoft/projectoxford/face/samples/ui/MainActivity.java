@@ -34,26 +34,49 @@ package com.microsoft.projectoxford.face.samples.ui;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
 
 import com.microsoft.projectoxford.face.samples.R;
 
+import java.io.File;
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
 
-    private static final int REQUEST_SELECT_IMAGE = 0;
+    /*private static final int REQUEST_SELECT_IMAGE = 0;
+    private static final int REQUEST_TAKE_PHOTO = 0;
+    private Uri mUriPhotoTaken;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent = new Intent(this, IdentificationActivity.class);
+        /*Intent intent = new Intent(this, IdentificationActivity.class);
         startActivity(intent);
 
         Intent intent2 = new Intent(this, SelectImageActivity.class);
         startActivityForResult(intent2, REQUEST_SELECT_IMAGE);
+
+        Intent intent3 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if(intent.resolveActivity(getPackageManager()) != null) {
+            // Save the photo taken to a temporary file.
+            File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+            try {
+                File file = File.createTempFile("IMG_", ".jpg", storageDir);
+                mUriPhotoTaken = Uri.fromFile(file);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, mUriPhotoTaken);
+                startActivityForResult(intent3, REQUEST_TAKE_PHOTO);
+            } catch (IOException e) {
+                setInfo(e.getMessage());
+            }
+        }*/
 
         if (getString(R.string.subscription_key).startsWith("Please")) {
             new AlertDialog.Builder(this)
@@ -72,5 +95,10 @@ public class MainActivity extends AppCompatActivity {
     public void identification(View view) {
         Intent intent = new Intent(this, IdentificationActivity.class);
         startActivity(intent);
+    }
+
+    private void setInfo(String info) {
+        TextView textView = (TextView) findViewById(R.id.info);
+        textView.setText(info);
     }
 }
